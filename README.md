@@ -1,8 +1,5 @@
 # 🔧 Projeto Django - Oficina Mecânica
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/igormahall/djangoOficina/django.yml?branch=master)
-![License](https://img.shields.io/github/license/igormahall/djangoOficina)
-
 Este projeto é uma aplicação web desenvolvida com Django e Django REST Framework que simula a modelagem de uma **oficina mecânica**, com controle de clientes, veículos e serviços prestados.
 
 ---
@@ -416,7 +413,7 @@ git push -u origin master
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a licença MIT — consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está licenciado sob a licença MIT.
 
 ---
 
