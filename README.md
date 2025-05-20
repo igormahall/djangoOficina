@@ -1,20 +1,76 @@
-Projeto Django
+# 🔧 Projeto Django - Oficina Mecânica
 
-1- Criar projeto Django no pycharm, com admin habilitado e app name definido
+Este projeto é uma aplicação web desenvolvida com Django e Django REST Framework que simula a modelagem de uma **oficina mecânica**, com controle de clientes, veículos e serviços prestados.
 
-2- Criar conexão db: postgres
+---
 
-3- Instalar dependências
-$ python.exe -m pip install --upgrade pip
-$ pip install psycopg2-binary djangorestframework django-filter
-$ pip freeze > requirements.txt
+## 🚀 Tecnologias utilizadas
 
-4- Configurar settings.py
+- Python
+- Django
+- Django REST Framework
+- PostgreSQL
+- django-filter
+
+---
+
+## 📁 Estrutura do Projeto
+
+O projeto é composto pelas seguintes entidades:
+
+- **Client**: cadastro de clientes
+- **Vehicle**: cadastro de veículos
+- **Service**: serviços prestados a um cliente para determinado veículo
+
+---
+
+## 🧰 Passo a passo para execução
+
+### 1️⃣ Criar projeto Django no PyCharm
+
+- Novo projeto com **admin habilitado**
+- Nome do app: `oficina`
+
+---
+
+### 2️⃣ Configurar banco de dados PostgreSQL
+
+Certifique-se de ter o PostgreSQL instalado e um banco criado com as seguintes credenciais:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'oficina',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+```
+
+---
+
+### 3️⃣ Instalar dependências
+
+```bash
+python -m pip install --upgrade pip
+pip install psycopg2-binary djangorestframework django-filter
+pip freeze > requirements.txt
+```
+
+---
+
+### 4️⃣ Configurar apps no `django/settings.py`
+
+```python
 INSTALLED_APPS = [
+    ...
     'rest_framework',
-    'django_filters'
+    'django_filters',
 ]
-
+...
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -25,8 +81,13 @@ DATABASES = {
         'PASSWORD': 'postgres'
     }
 }
+```
 
-5- Editar arquivo models.py (dentro da pasta do app)
+---
+
+### 5️⃣ Criar os modelos (`oficina/models.py`)
+
+```python
 from django.db import models
 
 class ModelBase(models.Model):
@@ -118,15 +179,25 @@ class Service(ModelBase):
                 f"Cliente:{self.client}, "
                 f"Vehicle:{self.vehicle.model}, "
                 f"Vehicle:{self.vehicle.brand}, ")
+```
 
-6- Migrations
-$ python manage.py showmigrations
-$ python manage.py makemigrations
-% python manage.py migrate
+---
 
-7- Criar arquivo python: app(oficina) > serializers.py
+### 6️⃣ Criar e aplicar migrations
+
+```bash
+python manage.py showmigrations
+python manage.py makemigrations
+python manage.py migrate
+```
+
+---
+
+### 7️⃣ Criar serializadores (`oficina/serializers.py`)
+
+```python
 from rest_framework import serializers
-from oficina.models import Client,Vehicle,Service
+from oficina.models import Client, Vehicle, Service
 
 class ClientSerializer(serializers.ModelSerializer):
     name = serializers.CharField(
@@ -157,11 +228,17 @@ class ServiceSerializer(serializers.ModelSerializer):
     client_id = serializers.PrimaryKeyRelatedField(queryset=Client.objects.all(), source='client', write_only=True)
     vehicle = VehicleSerializer(read_only=True)
     vehicle_id = serializers.PrimaryKeyRelatedField(queryset=Vehicle.objects.all(), source='vehicle', write_only=True)
+
     class Meta:
         model = Service
         fields = ['id', 'client_id', 'client', 'vehicle_id', 'vehicle', 'repair', 'cost']
+```
 
-8- Configurar: app(oficina) > views.py
+---
+
+### 8️⃣ Criar as views (`oficina/views.py`)
+
+```python
 from rest_framework import viewsets, permissions
 from oficina.models import Client, Vehicle, Service
 from oficina.serializers import ClientSerializer, VehicleSerializer, ServiceSerializer
@@ -188,8 +265,13 @@ class ServiceViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_class = ServiceFilter
+```
 
-9- Criar python: app(oficina) > urls.py
+---
+
+### 9️⃣ Criar as rotas do app (`oficina/urls.py`)
+
+```python
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from oficina.views import ClientViewSet, VehicleViewSet, ServiceViewSet
@@ -202,8 +284,13 @@ router.register(r'services', ServiceViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]
+```
 
-10- Editar: projetao > urls.py
+---
+
+### 🔟 Incluir rotas no projeto (`django/urls.py`)
+
+```python
 from django.contrib import admin
 from django.urls import path, include
 
@@ -212,17 +299,26 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
 ]
+```
 
-11- Adicionar no projetao>settings.py
+---
+
+### 1️⃣1️⃣ Configurar o `REST_FRAMEWORK` em `django/settings.py`
+
+```python
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'DEFAULT_FILTER_BACKENDS': 'django_filters.rest_framework.DjangoFilterBackend'
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+```
 
-12- Criar filtros: app(oficina) > filters.py
+---
+
+### 1️⃣2️⃣ Criar os filtros (`oficina/filters.py`)
+
+```python
 import django_filters
 from oficina.models import Client, Vehicle, Service
-
 
 class ClientFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
@@ -233,7 +329,6 @@ class ClientFilter(django_filters.FilterSet):
         model = Client
         fields = ['id', 'name', 'phone', 'email']
 
-
 class VehicleFilter(django_filters.FilterSet):
     model = django_filters.CharFilter(lookup_expr='icontains')
     brand = django_filters.CharFilter(lookup_expr='icontains')
@@ -242,7 +337,6 @@ class VehicleFilter(django_filters.FilterSet):
     class Meta:
         model = Vehicle
         fields = ['model', 'brand', 'year']
-
 
 class ServiceFilter(django_filters.FilterSet):
     client_id = django_filters.NumberFilter(field_name='client__id')
@@ -254,13 +348,59 @@ class ServiceFilter(django_filters.FilterSet):
     class Meta:
         model = Service
         fields = ['id', 'client_id', 'client_name', 'vehicle_id', 'vehicle_model', 'vehicle_brand']
+```
 
-13- Criar superadmin
-$ python manage.py createsuperuser
+---
 
-14- Configurar app para rodar como localhost
-$ python manage.py runserver
+### 1️⃣3️⃣ Criar superusuário
 
-15 - Run
+```bash
+python manage.py createsuperuser
+```
 
-16 - Testar get/post, subir para github
+---
+
+### 1️⃣4️⃣ Executar o servidor
+
+```bash
+python manage.py runserver
+```
+
+---
+
+### 1️⃣5️⃣ Rodar a aplicação
+
+- Acesse: http://localhost:8000/
+
+---
+
+### 1️⃣6️⃣ Testar e subir para o GitHub
+
+- Testar os endpoints via Postman/Insomnia
+- Versionar com Git e subir para o GitHub
+
+```bash
+git init
+git add .
+git commit -m "Projeto oficina mecânica - versão inicial"
+git remote add origin https://github.com/seuusuario/oficina-mecanica.git
+git push -u origin master
+```
+
+---
+
+## ✅ Endpoints disponíveis
+
+| Recurso    | Endpoint REST        |
+|------------|----------------------|
+| Clientes   | `/clients/`          |
+| Veículos   | `/vehicles/`         |
+| Serviços   | `/services/`         |
+
+---
+
+## 👨‍🔧 Autor
+
+Desenvolvido por Igor Mahall – Especialista em backend com Django.
+
+---
