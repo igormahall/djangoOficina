@@ -41,26 +41,7 @@ O projeto é composto pelas seguintes entidades:
 
 ---
 
-### 2️⃣ Configurar banco de dados PostgreSQL
-
-Certifique-se de ter o PostgreSQL instalado e um banco criado com as seguintes credenciais:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'oficina',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
-```
-
----
-
-### 3️⃣ Instalar dependências
+### 2️⃣ Instalar dependências
 
 ```bash
 python -m pip install --upgrade pip
@@ -70,7 +51,7 @@ pip freeze > requirements.txt
 
 ---
 
-### 4️⃣ Configurar apps no `django/settings.py`
+### 3️⃣ Configurar apps no `django/settings.py`
 
 ```python
 INSTALLED_APPS = [
@@ -93,7 +74,7 @@ DATABASES = {
 
 ---
 
-### 5️⃣ Criar os modelos (`oficina/models.py`)
+### 4️⃣ Criar os modelos (`oficina/models.py`)
 
 ```python
 from django.db import models
@@ -191,7 +172,7 @@ class Service(ModelBase):
 
 ---
 
-### 6️⃣ Criar e aplicar migrations
+### 5️⃣ Criar e aplicar migrations
 
 ```bash
 python manage.py showmigrations
@@ -201,7 +182,7 @@ python manage.py migrate
 
 ---
 
-### 7️⃣ Criar serializadores (`oficina/serializers.py`)
+### 6️⃣ Criar serializadores (`oficina/serializers.py`)
 
 ```python
 from rest_framework import serializers
@@ -244,7 +225,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 
 ---
 
-### 8️⃣ Criar as views (`oficina/views.py`)
+### 7️⃣ Criar as views (`oficina/views.py`)
 
 ```python
 from rest_framework import viewsets, permissions
@@ -277,7 +258,7 @@ class ServiceViewSet(viewsets.ModelViewSet):
 
 ---
 
-### 9️⃣ Criar as rotas do app (`oficina/urls.py`)
+### 8️⃣ Criar as rotas do app (`oficina/urls.py`)
 
 ```python
 from django.urls import path, include
@@ -296,7 +277,7 @@ urlpatterns = [
 
 ---
 
-### 🔟 Incluir rotas no projeto (`django/urls.py`)
+### 9️⃣ Incluir rotas no projeto (`django/urls.py`)
 
 ```python
 from django.contrib import admin
@@ -311,7 +292,7 @@ urlpatterns = [
 
 ---
 
-### 1️⃣1️⃣ Configurar o `REST_FRAMEWORK` em `django/settings.py`
+### 🔟 Configurar o `REST_FRAMEWORK` em `django/settings.py`
 
 ```python
 REST_FRAMEWORK = {
@@ -322,7 +303,7 @@ REST_FRAMEWORK = {
 
 ---
 
-### 1️⃣2️⃣ Criar os filtros (`oficina/filters.py`)
+### 1️⃣1️⃣ Criar os filtros (`oficina/filters.py`)
 
 ```python
 import django_filters
@@ -360,7 +341,7 @@ class ServiceFilter(django_filters.FilterSet):
 
 ---
 
-### 1️⃣3️⃣ Criar superusuário
+### 1️⃣2️⃣ Criar superusuário
 
 ```bash
 python manage.py createsuperuser
@@ -368,7 +349,7 @@ python manage.py createsuperuser
 
 ---
 
-### 1️⃣4️⃣ Executar o servidor
+### 1️⃣3️⃣ Executar o servidor
 
 ```bash
 python manage.py runserver
@@ -376,15 +357,15 @@ python manage.py runserver
 
 ---
 
-### 1️⃣5️⃣ Rodar a aplicação
+### 1️⃣4️⃣ Rodar a aplicação
 
 - Acesse: http://localhost:8000/
-
+- Testar os endpoints via Postman/Insomnia (GET/POST)
+  
 ---
 
-### 1️⃣6️⃣ Testar e subir para o GitHub
+### 1️⃣5️⃣ Testar e subir para o GitHub
 
-- Testar os endpoints via Postman/Insomnia
 - Versionar com Git e subir para o GitHub
 
 ```bash
