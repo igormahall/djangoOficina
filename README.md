@@ -4,6 +4,14 @@ Este projeto é uma aplicação web desenvolvida com Django e Django REST Framew
 
 ---
 
+## 🧱 Modelagem de Dados
+
+A modelagem da aplicação segue o seguinte diagrama entidade-relacionamento:
+
+![Modelagem de Dados](modelagem.png)
+
+---
+
 ## 🚀 Tecnologias utilizadas
 
 - Python
