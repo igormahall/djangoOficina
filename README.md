@@ -422,6 +422,6 @@ Este projeto está licenciado sob a licença MIT — consulte o arquivo [LICENSE
 
 ## 👨‍🔧 Autor
 
-Desenvolvido por Igor Mahall – Especialista em backend com Django.
+Desenvolvido por Igor Mahall – Aprendendo backend com Django =)
 
 ---
