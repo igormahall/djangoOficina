@@ -1,5 +1,8 @@
 # 🔧 Projeto Django - Oficina Mecânica
 
+![Build Status](https://img.shields.io/github/actions/workflow/status/igormahall/djangoOficina/django.yml?branch=master)
+![License](https://img.shields.io/github/license/igormahall/djangoOficina)
+
 Este projeto é uma aplicação web desenvolvida com Django e Django REST Framework que simula a modelagem de uma **oficina mecânica**, com controle de clientes, veículos e serviços prestados.
 
 ---
@@ -33,6 +36,19 @@ O projeto é composto pelas seguintes entidades:
 ---
 
 ## 🧰 Passo a passo para execução
+
+### 0️⃣ Configurar ambiente virtual (recomendado)
+
+Para isolar as dependências do projeto, utilize um ambiente virtual:
+
+```bash
+python -m venv venv
+# No Linux/macOS
+source venv/bin/activate
+# No Windows
+venv\Scripts\activate
+```
+---
 
 ### 1️⃣ Criar projeto Django no PyCharm
 
@@ -385,6 +401,22 @@ git push -u origin master
 | Clientes   | `/clients/`          |
 | Veículos   | `/vehicles/`         |
 | Serviços   | `/services/`         |
+
+---
+
+## 🤝 Contribuindo
+
+1. Fork o repositório.
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
+3. Faça commit das suas alterações (`git commit -am 'Adiciona nova feature'`).
+4. Faça push para a branch criada (`git push origin feature/nova-feature`).
+5. Abra um Pull Request para análise.
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a licença MIT — consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
