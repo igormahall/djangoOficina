@@ -421,16 +421,16 @@ Este projeto está licenciado sob a licença MIT.
 
 
 **Django e proteção contra Atauqes XSS**
-https://www.stackhawk.com/blog/django-xss-examples-prevention/
+- https://www.stackhawk.com/blog/django-xss-examples-prevention/
 
 **Cursos bons sobre Django**
-https://www.alura.com.br/formacao-django-rest
-https://www.alura.com.br/curso-online-api-django-3-rest-framework
-https://www.udemy.com/course/criando-apis-rest-com-django-rest-framework-essencial/?couponCode=CP130525BRGB
-https://www.udemy.com/course/django-python-advanced/?couponCode=CP130525BRGB
-https://www.udemy.com/course/curso-de-django-web-framework-com-python-html-e-css/?couponCode=CP130525BRGB
-https://www.codecademy.com/learn/introduction-to-django/modules/introduction-to-django/cheatsheet
-https://www.codecademy.com/learn/paths/build-python-web-apps-with-django
+- https://www.alura.com.br/formacao-django-rest
+- https://www.alura.com.br/curso-online-api-django-3-rest-framework
+- https://www.udemy.com/course/criando-apis-rest-com-django-rest-framework-essencial/?couponCode=CP130525BRGB
+- https://www.udemy.com/course/django-python-advanced/?couponCode=CP130525BRGB
+- https://www.udemy.com/course/curso-de-django-web-framework-com-python-html-e-css/?couponCode=CP130525BRGB
+- https://www.codecademy.com/learn/introduction-to-django/modules/introduction-to-django/cheatsheet
+- https://www.codecademy.com/learn/paths/build-python-web-apps-with-django
 
 ---
 
